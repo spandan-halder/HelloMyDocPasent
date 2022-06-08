@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="Gradle: lt.neworld:spanner:1.1.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/05269ebf67504b7caa09e78761a88c5a/transformed/jetified-spanner-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/05269ebf67504b7caa09e78761a88c5a/transformed/jetified-spanner-1.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/05269ebf67504b7caa09e78761a88c5a/transformed/jetified-spanner-1.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/85397aa2a279a02116fdf77255611e31/transformed/jetified-spanner-1.1.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/85397aa2a279a02116fdf77255611e31/transformed/jetified-spanner-1.1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/85397aa2a279a02116fdf77255611e31/transformed/jetified-spanner-1.1.0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9ddaf579264ac769dc8d3846db1e217e/transformed/jetified-spanner-1.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9ddaf579264ac769dc8d3846db1e217e/transformed/jetified-spanner-1.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9ddaf579264ac769dc8d3846db1e217e/transformed/jetified-spanner-1.1.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/lt.neworld/spanner/1.1.0/fc4cd9ed512a0e18a3240daf6f9eba3fc7ca5a8c/spanner-1.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/lt.neworld/spanner/1.1.0/4d6b35d6ea7e32e6bc878166f013bb51de21d666/spanner-1.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

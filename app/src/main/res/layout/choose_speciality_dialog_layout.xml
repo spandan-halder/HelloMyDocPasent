@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="40dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingBottom="44dp"
+    >
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_left"
+        android:scaleType="fitCenter"
+        app:tint="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/choose_speciality"
+        android:textSize="34sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_bold"
+        app:layout_constraintTop_toBottomOf="@id/iv_back"
+        android:layout_marginTop="21.6dp"
+        />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_choices"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_head"
+        app:layout_constraintBottom_toTopOf="@id/bt_continue"
+        android:paddingVertical="24dp">
+
+        <LinearLayout
+            android:id="@+id/llv_general_practitioner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="54dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:foreground="?android:attr/selectableItemBackground">
+            <ImageView
+                android:id="@+id/iv_general_practitioner"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:src="@drawable/ic_stethoscope_svg"
+                android:padding="27.24dp"
+                android:background="@drawable/light_red_circle"
+                android:layout_margin="14dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/general_npractitioner"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/gray1"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llv_pediatrics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="54dp"
+            android:orientation="vertical"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/llv_general_practitioner"
+            android:gravity="center_horizontal"
+            android:foreground="?android:attr/selectableItemBackground">
+            <ImageView
+                android:id="@+id/iv_Pediatrics"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:src="@drawable/ic_noun_newborn_3197843"
+                android:padding="27.24dp"
+                android:background="@drawable/light_red_circle"
+                android:layout_margin="14dp"
+                android:clickable="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pediatrics"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:textColor="@color/gray1"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/bt_continue"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="@string/_continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_choices"
+        android:height="54dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

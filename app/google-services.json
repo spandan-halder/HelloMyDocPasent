@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "675534475388",
+    "project_id": "hellomydoc2",
+    "storage_bucket": "hellomydoc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675534475388:android:42bfc9376a07b2513ff9f9",
+        "android_client_info": {
+          "package_name": "com.hellomydoc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "675534475388-csdi6clm96trivo628ums0r0ojkcctn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl7bG-Ta-uqz11t56b4-uNSy_rUoc69pg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "675534475388-csdi6clm96trivo628ums0r0ojkcctn8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

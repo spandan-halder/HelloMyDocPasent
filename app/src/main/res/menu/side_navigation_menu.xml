@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/bottom_menu_home"
+            android:enabled="true"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home"
+            android:checked="true"/>
+        <item
+            android:id="@+id/bottom_menu_consultation"
+            android:enabled="true"
+            android:icon="@drawable/ic_consultation"
+            android:title="@string/consultations"/>
+        <item
+            android:id="@+id/bottom_menu_my_bookings"
+            android:enabled="true"
+            android:icon="@drawable/ic_my_bookings"
+            android:title="@string/my_bookings"/>
+        <item
+            android:id="@+id/bottom_menu_profile"
+            android:enabled="true"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/profile"/>
+    </group>
+    <item
+        android:id="@+id/menu_notifications"
+        android:enabled="true"
+        android:icon="@drawable/ic_outline_notifications_none_24"
+        android:title="@string/notifications"/>
+    <item
+        android:id="@+id/menu_medical_record"
+        android:enabled="true"
+        android:icon="@drawable/ic_medical_records_svgrepo_com"
+        android:title="@string/medical_records"/>
+
+</menu>

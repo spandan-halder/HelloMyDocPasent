@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AddMobileNumberActivity">
+
+    <ImageView
+        android:id="@+id/add_num_back_btn"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@drawable/ic_left"/>
+
+    <TextView
+        android:id="@+id/tv_add_num"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Add your number"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:padding="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/add_num_back_btn"
+        app:layout_constraintLeft_toLeftOf="@+id/add_num_back_btn"
+        />
+
+    <TextView
+        android:id="@+id/add_num_desc_text"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="Add your phone number. We'll send you a verification code so we know you're real."
+        app:layout_constraintTop_toBottomOf="@+id/tv_add_num"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <!--<androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llh_add_num"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/add_num_desc_text">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="+254"
+            android:textSize="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="20dp"/>
+
+        <EditText
+            android:id="@+id/et_mob_no"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="Your mobile number"
+            android:textSize="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/add_num_desc_text"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/llh_add_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/gray"
+        android:inputType="text"
+        android:hint="Your Phone Number / Email"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/add_num_desc_text"
+        android:layout_marginTop="15dp"
+        app:prefixText="@string/country_code_spaced"
+        app:prefixTextColor="@color/black"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="#00000000"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:digits="0123456789"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/bt_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="next"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/llh_add_num"
+        app:layout_constraintLeft_toLeftOf="@+id/llh_add_num"/>
+
+    <TextView
+        android:id="@+id/tv_terms_of_service"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="By providing my phone number, I hereby agree and accept the Terms of Service and Privacy Policy in use of this app."
+        app:layout_constraintTop_toBottomOf="@+id/bt_next"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

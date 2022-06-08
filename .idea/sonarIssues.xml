@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/dummy.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Desktop/BottomSheet/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Desktop/BottomSheet/app/src/main/res/layout/bottom_sheet.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/build/generated/source/kapt/debug/com/hellomydoc/doctor/DaggerApp_HiltComponents_SingletonC.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/App.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/Constants.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/NotificationService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/anyListView/AnyListView.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/anyListView/FlowLayoutManager.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/chat/ChatBox.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/data/Repository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/fragments/AddMedicineFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/app/src/main/java/com/hellomydoc/doctor/fragments/HomeFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/AppDelegate.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/Chat.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/ChatActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/ChatBox.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/ChatRoute.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/ChatViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/Firepo.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/MyViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/Style.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/ImageViewer.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/MainPageContent.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatInput/sendSection/attachmentPreview/FileAttachmentPreview.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatAttachment/ChatAttachment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatAttachment/ContactAttachment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatAttachment/DocAttachment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatAttachment/LocationAttachment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatAttachment/imageAttachment/ImageAttachment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatAttachment/imageAttachment/SuccessImageAttachment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatMenu/ChatMenu.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatMenu/ContactMenus.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatMenu/DeleteMenu.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatMenu/DetailsMenu.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/chatTimeAndStatus/ChatTimeAndStatus.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/mychat/MyChatStatus.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/mychat/MyChatText.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/mychat/MyMessage.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/peerChat/PeerChatText.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/userInterface/mainPageContent/pageContent/mainContent/chatContent/chatsSection/conversations/messageItem/peerChat/PeerMessage.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/chat/src/main/java/com/hellomydoc/chat/presentation/viewModels/ChatViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../HelloMyDocDoctor/gradle.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/kapt/debug/com/hellomydoc/DaggerApp_HiltComponents_SingletonC.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/intermediates/packaged_manifests/debug/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/App.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/Constants.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/CustomPagerEnum.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/Extensions.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/GLogin.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/HomeFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/Navi.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/Navi.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/NotificationService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/Users.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/activities/AbstractActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/activities/AddMobileNumberActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/activities/HomeActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/activities/LoginActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/activities/MedicalRecordsActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/activities/RegisterActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/activities/SplashActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/activities/VerifyOtpActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/chat/Firepo.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/data/ApiResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/data/AppointmentData.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/data/MobileVerifiedSetResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/data/OTPResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/data/Repository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/fragments/ConsultationFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/fragments/HomeFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/fragments/MyBookingsFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/hellomydoc/fragments/ProfileFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/anim/drawable/ic_consultation.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/anim/drawable/ic_home.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/anim/drawable/ic_my_bookings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/anim/drawable/ic_profile.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/color/bottom_nav_item_color_selector.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_home_filled_light_red.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/ic_home_filled_white.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/icon_1.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/forgot_password_layout.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_consultation.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_my_bookings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/menu/bottom_navigation_menu.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/settings.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../LearnPea2/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/Core/src/main/java/com/farmology/core/domain/Action.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/Core/src/main/java/com/farmology/core/domain/model/CartSummary.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/Core/src/main/java/com/farmology/core/domain/use_cases/CartUseCases.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/app/src/main/java/com/farmology/dev/Extensions.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/app/src/main/java/com/farmology/dev/presentation/ui/customView/PersistentBottomSheetArrow.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/app/src/main/java/com/farmology/dev/presentation/ui/customView/PersistentBottomSheetArrow.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/app/src/main/java/com/farmology/dev/presentation/ui/fragments/CartFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/app/src/main/java/com/farmology/dev/presentation/ui/viewmodels/CartViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/app/src/main/res/layout/cart_summary_dialog.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/app/src/main/res/layout/fragment_cart.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../farmologyNew/app/src/main/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

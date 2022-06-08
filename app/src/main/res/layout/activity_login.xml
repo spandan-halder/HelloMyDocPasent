@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_logo"
+        android:layout_width="135dp"
+        android:layout_height="130dp"
+        android:src="@drawable/ic_logo_hellomydoc"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_text_login"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Login"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/login_logo"
+        app:layout_constraintLeft_toLeftOf="@id/login_logo"/>
+
+    <TextView
+        android:id="@+id/tv_enter_your_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Enter your phone number / Email"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_text_login"
+        app:layout_constraintLeft_toLeftOf="@id/tv_text_login"/>
+
+    <!--<EditText
+        android:id="@+id/et_user_id"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:hint="Your Phone Number / Email"
+        android:textSize="15dp"
+        android:maxLines="1"
+        android:lines="1"
+        android:inputType="text"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_enter_your_phone"/>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_user_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/gray"
+        android:inputType="text"
+        android:hint="Your Phone Number / Email"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_enter_your_phone"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_user_id_core"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:imeOptions="actionNext"
+            android:layout_marginBottom="8dp"
+            android:inputType="text"
+            android:background="#00000000"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/show_password_selector"
+        android:textColorHint="@color/gray"
+
+        app:layout_constraintRight_toRightOf="@+id/et_user_id"
+        app:layout_constraintTop_toBottomOf="@+id/et_user_id"
+        app:layout_constraintLeft_toLeftOf="@+id/et_user_id"
+        android:hint="Password">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password_core"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:imeOptions="actionNext"
+            android:layout_marginBottom="8dp"
+            android:inputType="textPassword"
+            android:background="#00000000"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tv_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="@string/forgot_password_ask"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        app:layout_constraintRight_toRightOf="@+id/et_password"
+        android:textColor="@color/blue"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/red_btn_background"
+        android:layout_marginLeft="@dimen/btn_side_margin"
+        android:layout_marginRight="@dimen/edit_text_side_margin"
+        app:layout_constraintTop_toBottomOf="@+id/tv_forgot_password"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_forgot_password"/>
+    <TextView
+        android:id="@+id/tv_sign_up_via"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Or Login via"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llh_social_login_buttons"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@id/login_btn"
+        app:layout_constraintRight_toRightOf="@id/login_btn"
+        app:layout_constraintTop_toBottomOf="@id/tv_sign_up_via">
+
+        <ImageView
+            android:id="@+id/google_login_img_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:background="@drawable/social_btn_style"
+            android:clickable="true"
+            android:src="@drawable/ic_icons8_google" />
+
+        <ImageView
+            android:id="@+id/fb_login_img_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:background="@drawable/social_btn_style"
+            android:clickable="true"
+            android:src="@drawable/ic_icons8_facebook" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/lin_lay_log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llh_social_login_buttons"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/tv_dont_have_an_ac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="2.5dp"
+            android:text="Don't have an account?" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Register"
+            android:layout_marginLeft="2.5dp"
+            android:textColor="@color/skyblue"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
+        android:elevation="10dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:animateLayoutChanges="true"
+            app:layout_constraintHeight_percent="0.5"
+            android:background="@drawable/ll_forgot_password"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/forgot_back_btn"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@drawable/ic_left"/>
+
+            <TextView
+                android:id="@+id/forgot_password_text"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textStyle="bold"
+                android:textSize="26dp"
+                android:text="Forgot Password"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/forgot_back_btn"
+                app:layout_constraintLeft_toLeftOf="@+id/forgot_back_btn"/>
+
+            <TextView
+                android:id="@+id/tv_forgot_desc"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Enter your phone number then we will send you a code to reset your password"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                app:layout_constraintTop_toBottomOf="@+id/forgot_password_text" />
+
+            <EditText
+                android:id="@+id/forgot_email"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:hint="Your Phone Number"
+                android:textSize="15dp"
+                android:padding="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_forgot_desc"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="send reset code"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/red_btn_background"
+                android:layout_marginLeft="@dimen/btn_side_margin"
+                android:layout_marginRight="@dimen/edit_text_side_margin"
+                app:layout_constraintTop_toBottomOf="@+id/forgot_email"
+                app:layout_constraintLeft_toLeftOf="@+id/forgot_email"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+

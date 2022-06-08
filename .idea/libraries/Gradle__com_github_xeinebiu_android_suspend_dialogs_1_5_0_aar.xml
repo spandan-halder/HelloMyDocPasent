@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.xeinebiu:android-suspend-dialogs:1.5.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f874bb0ed0abcaaa36ecf5e1cfe2f769/transformed/jetified-android-suspend-dialogs-1.5.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f874bb0ed0abcaaa36ecf5e1cfe2f769/transformed/jetified-android-suspend-dialogs-1.5.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f874bb0ed0abcaaa36ecf5e1cfe2f769/transformed/jetified-android-suspend-dialogs-1.5.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xeinebiu/android-suspend-dialogs/1.5.0/fd67b5b50220d93ec14d223f80384fc55afb6814/android-suspend-dialogs-1.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
