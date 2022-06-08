@@ -21,6 +21,11 @@
         android:theme="@style/Theme.HelloMyDoc2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".NewAppointmentActivity"
+            android:exported="false"
+            android:label="@string/title_activity_new_appointment"
+            android:theme="@style/Theme.HelloMyDoc2" />
+        <activity
             android:name=".activities.MedicalRecordDetailsActivity"
             android:exported="false"
             android:label="@string/title_activity_medical_record_details"

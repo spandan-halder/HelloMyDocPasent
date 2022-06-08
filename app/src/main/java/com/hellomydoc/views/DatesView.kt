@@ -129,7 +129,7 @@ class DatesView : ConstraintLayout {
                 val dateView = findViewById<TextView>(R.id.tv_date)
                 val slotView = findViewById<TextView>(R.id.tv_slots)
                 val positionData = data[position]
-                positionData?.apply {
+                positionData.apply {
                     val dateValue = date.dateFormat(
                         R.string.mysql_date_format.string,
                         R.string.eee_mmm_d.string,

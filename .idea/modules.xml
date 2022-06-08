@@ -3,18 +3,18 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.iml" filepath="$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.androidTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.androidTest~1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.main~1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.unitTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.unitTest~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1692782598/AgoraAudioVideoSample.HelloMyDoc2.audioVideoCall.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/HelloMyDoc2.iml" filepath="$PROJECT_DIR$/.idea/modules/HelloMyDoc2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HelloMyDoc2.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HelloMyDoc2.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HelloMyDoc2.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HelloMyDoc2.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HelloMyDoc2.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HelloMyDoc2.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/HelloMyDoc2.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/HelloMyDoc2.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.iml" filepath="$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.androidTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.androidTest~1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.main~1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.unitTest~1.iml" filepath="$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.unitTest~1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-2002239968/HelloMyDocDoctor-master.HelloMyDoc2.chat.unitTest.iml" />
     </modules>
   </component>
 </project>

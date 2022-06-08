@@ -8,11 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.hellomydoc.*
+import com.hellomydoc.R
 import com.hellomydoc.activities.HomeActivity
 import com.hellomydoc.data.*
 import com.hellomydoc.data.slots.DateSlot
@@ -28,8 +41,10 @@ import com.vxplore.audiovideocall.videocall.models.Ids
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
+    private val dateTimeTrigger = mutableStateOf(0L)
     private var callback: HomeActivity.ChildCallback? = null
     private var dateSlotsData: List<DateSlot> = listOf()/*getDateSlots()*/
+
 
     var prices: AppointmentPrices? = null
 
@@ -317,6 +332,7 @@ class HomeFragment : Fragment() {
     private fun onPediatricsClick() {
         onSpecialitySelected(AppointmentDoctorSpeciality.PEDIATRICS)
     }
+
 
 
     var selectedSlotData = SelectedDateSlot()

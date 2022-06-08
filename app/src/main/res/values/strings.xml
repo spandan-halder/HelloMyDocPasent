@@ -141,4 +141,5 @@
     <string name="prescription_details">Prescription Details</string>
     <string name="title_activity_doctor_details">DoctorDetailsActivity</string>
     <string name="title_activity_medical_record_details">MedicalRecordDetailsActivity</string>
+    <string name="title_activity_new_appointment">NewAppointmentActivity</string>
 </resources>

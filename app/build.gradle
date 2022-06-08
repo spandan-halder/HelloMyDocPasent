@@ -91,6 +91,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:5.15.3'
 
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
     def lifecycle_extension_version = '2.3.1'
 
