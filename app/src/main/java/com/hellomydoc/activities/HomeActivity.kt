@@ -1,7 +1,8 @@
 package com.hellomydoc.activities
 
-
+import android.content.Intent
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -28,15 +29,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
+import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
+import com.android.volley.AuthFailureError
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 import com.hellomydoc.*
 import com.hellomydoc.R
 import com.hellomydoc.chat.presentation.activity.ChatActivity
+import com.hellomydoc.data.AppointmentData
 import com.hellomydoc.databinding.ActivityHomeBinding
 import com.hellomydoc.fragments.ConsultationFragment
 import com.hellomydoc.fragments.HomeFragment
@@ -46,8 +55,11 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 class HomeActivity : AbstractActivity() {
+
+    var sendTokenURL: String = "https://hellomydoc.com/api/v1/welcome/saveUserFcmToken"
     private val ageGenderDialog = mutableStateOf(true)
-    enum class PAGE{
+
+    enum class PAGE {
         PROFILE,
         MEDICAL_HISTORY,
         VIDEO,
@@ -64,17 +76,18 @@ class HomeActivity : AbstractActivity() {
     }
 
     data class ChildCallback(
-        val goToPage: (PAGE,Bundle?)->Unit
+        val goToPage: (PAGE, Bundle?) -> Unit
     )
 
     private val childCallback = ChildCallback(
-        goToPage = {it,bundle->
-            onGoToPageRequested(it,bundle)
+        goToPage = { it, bundle ->
+            Log.d("Testing", it.toString())
+            onGoToPageRequested(it, bundle)
         }
     )
 
-    private fun onGoToPageRequested(page: PAGE,bundle: Bundle?) {
-        when(page){
+    private fun onGoToPageRequested(page: PAGE, bundle: Bundle?) {
+        when (page) {
             PAGE.ADD_PATIENT_DETAILS -> {
                 navi()
                     .target(AddPatientDetailsActivity::class.java)
@@ -89,37 +102,38 @@ class HomeActivity : AbstractActivity() {
                     ?.go()
             }
             PAGE.VIDEO -> {
+                Log.d("Testing1", page.toString())
                 navi()
                     .target(VideoCallingActivity::class.java)
                     .bundle(bundle)
                     ?.finish(false)
                     ?.go()
             }
-            PAGE.CONSULTATIONS-> {
+            PAGE.CONSULTATIONS -> {
                 binding.bottomNavigation.selectedItemId = R.id.bottom_menu_consultation
             }
-            PAGE.BOOKINGS-> {
+            PAGE.BOOKINGS -> {
                 binding.bottomNavigation.selectedItemId = R.id.bottom_menu_my_bookings
             }
-            PAGE.HOME-> {
+            PAGE.HOME -> {
                 binding.bottomNavigation.selectedItemId = R.id.bottom_menu_home
             }
-            PAGE.SPLASH-> {
+            PAGE.SPLASH -> {
                 navi()
                     .target(SplashActivity::class.java)
                     .finish(false)
                     ?.back()
             }
-            PAGE.PROFILE-> {
+            PAGE.PROFILE -> {
                 binding.bottomNavigation.selectedItemId = R.id.bottom_menu_profile
             }
-            PAGE.NOTIFICATIONS-> {
+            PAGE.NOTIFICATIONS -> {
                 navi()
                     .target(NotificationActivity::class.java)
                     .finish(false)
                     ?.go()
             }
-            PAGE.MEMBERS-> {
+            PAGE.MEMBERS -> {
                 navi()
                     .target(MembersActivity::class.java)
                     .finish(false)
@@ -148,10 +162,10 @@ class HomeActivity : AbstractActivity() {
     }
 
     private var drawerOnSelectedListener = NavigationView.OnNavigationItemSelectedListener {
-        if(binding.dlSideDrawer.isOpen){
+        if (binding.dlSideDrawer.isOpen) {
             binding.dlSideDrawer.closeDrawer(GravityCompat.START)
         }
-        return@OnNavigationItemSelectedListener onDrawerSelected(it.itemId,true)
+        return@OnNavigationItemSelectedListener onDrawerSelected(it.itemId, true)
     }
 
     private var bottomNavigationOnSelectedListener = NavigationBarView.OnItemSelectedListener {
@@ -165,7 +179,7 @@ class HomeActivity : AbstractActivity() {
             binding.bottomNavigation.selectedItemId = id
             return true
         } finally {
-            applyMenuSelected(id,fromDrawer)
+            applyMenuSelected(id, fromDrawer)
             setupNavigationMenuListener()
         }
     }
@@ -175,29 +189,28 @@ class HomeActivity : AbstractActivity() {
         binding.bottomNavigation.setOnItemSelectedListener(bottomNavigationOnSelectedListener)
     }
 
-    var onDrawerClosedEvent: (()->Unit)? = null
+    var onDrawerClosedEvent: (() -> Unit)? = null
     private fun applyMenuSelected(id: Int, fromDrawer: Boolean) {
-        if(fromDrawer){
+        if (fromDrawer) {
             onDrawerClosedEvent = {
                 onDrawerClosedEvent = null
-                when(id){
-                    R.id.bottom_menu_consultation->replaceToConsultationsFragment()
-                    R.id.bottom_menu_home->replaceToHomeFragment()
-                    R.id.bottom_menu_my_bookings->replaceToMyBookingsFragment()
-                    R.id.bottom_menu_profile->replaceToProfileFragment()
-                    R.id.menu_notifications-> goToNotificationsPage()
-                    R.id.menu_medical_record-> goToMedicalRecordsPage()
+                when (id) {
+                    R.id.bottom_menu_consultation -> replaceToConsultationsFragment()
+                    R.id.bottom_menu_home -> replaceToHomeFragment()
+                    R.id.bottom_menu_my_bookings -> replaceToMyBookingsFragment()
+                    R.id.bottom_menu_profile -> replaceToProfileFragment()
+                    R.id.menu_notifications -> goToNotificationsPage()
+                    R.id.menu_medical_record -> goToMedicalRecordsPage()
                 }
             }
-        }
-        else{
-            when(id){
-                R.id.bottom_menu_consultation->replaceToConsultationsFragment()
-                R.id.bottom_menu_home->replaceToHomeFragment()
-                R.id.bottom_menu_my_bookings->replaceToMyBookingsFragment()
-                R.id.bottom_menu_profile->replaceToProfileFragment()
-                R.id.menu_notifications-> goToNotificationsPage()
-                R.id.menu_medical_record-> goToMedicalRecordsPage()
+        } else {
+            when (id) {
+                R.id.bottom_menu_consultation -> replaceToConsultationsFragment()
+                R.id.bottom_menu_home -> replaceToHomeFragment()
+                R.id.bottom_menu_my_bookings -> replaceToMyBookingsFragment()
+                R.id.bottom_menu_profile -> replaceToProfileFragment()
+                R.id.menu_notifications -> goToNotificationsPage()
+                R.id.menu_medical_record -> goToMedicalRecordsPage()
             }
         }
     }
@@ -215,30 +228,58 @@ class HomeActivity : AbstractActivity() {
         binding.bottomNavigation.setOnItemSelectedListener(null)
     }
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+
+    }
+
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //update register token....
+        userPushTokenUpdate()
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val root = binding.root
         setContentView(root)
 
+        val extras = intent?.extras
+
+        if (extras != null) {
+            Log.d("MyPushNoti", "${extras.getBundle(Constants.DataPayload)}")
+            if (extras.getBundle(Constants.DataPayload) is Bundle) {
+                val payload = extras.getBundle(Constants.DataPayload) as Bundle
+
+                payload["data"]?.let {
+                    val intent = Intent(this, TestVideoCallActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    intent.putExtra(Constants.DataPayload, bundleOf("data" to it))
+                    startActivity(intent)
+                    //replaceToConsultationsFragment(it)
+                    Log.d("MyLog", "hello")
+                }
+                Log.d("TEXT111", payload.toString())
+            }
+        }
+
+
         setupAgeAndGenderDialog()
 
-        binding.dlSideDrawer.addDrawerListener(object: DrawerLayout.DrawerListener{
+        binding.dlSideDrawer.addDrawerListener(object : DrawerLayout.DrawerListener {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
-                Log.d("drawer_state","slide=$slideOffset")
+                Log.d("drawer_state", "slide=$slideOffset")
             }
 
             override fun onDrawerOpened(drawerView: View) {
-                Log.d("drawer_state","opened")
+                Log.d("drawer_state", "opened")
             }
 
             override fun onDrawerClosed(drawerView: View) {
-                Log.d("drawer_state","closed")
+                Log.d("drawer_state", "closed")
             }
 
             override fun onDrawerStateChanged(newState: Int) {
-                Log.d("drawer_state","$newState")
+                Log.d("drawer_state", "$newState")
                 onDrawerClosedEvent?.invoke()
             }
 
@@ -251,7 +292,7 @@ class HomeActivity : AbstractActivity() {
         setupNavigationMenuListener()
 
         binding.ivMenu.setOnClickListener {
-            if(!binding.dlSideDrawer.isOpen){
+            if (!binding.dlSideDrawer.isOpen) {
                 binding.dlSideDrawer.open()
             }
         }
@@ -279,10 +320,12 @@ class HomeActivity : AbstractActivity() {
             }
             return@setOnItemSelectedListener false
         }*/
+
+
     }
 
     private fun setupAgeAndGenderDialog() {
-        if(!repository.getAgeAndGenderOk()){
+        if (!repository.getAgeAndGenderOk()) {
             binding.cvContent.setContent {
                 val canUpdate = remember { mutableStateOf(false) }
                 val genderIconSize = 48
@@ -292,16 +335,19 @@ class HomeActivity : AbstractActivity() {
                 val calendarOpenState = remember { mutableStateOf(false) }
                 val ageStringState = remember { mutableStateOf("") }
                 val dobString = remember { mutableStateOf("") }
-                fun validate(){
-                    canUpdate.value = (dobString.value.isNotEmpty()||ageStringState.value.isNotEmpty())&&genderState.value > -1
+                fun validate() {
+                    canUpdate.value =
+                        (dobString.value.isNotEmpty() || ageStringState.value.isNotEmpty()) && genderState.value > -1
                 }
-                if(ageGenderDialog.value){
+                if (ageGenderDialog.value) {
                     Dialog(onDismissRequest = { ageGenderDialog.value = false }) {
-                        if(calendarOpenState.value){
-                            Box(modifier = Modifier
-                                .fillMaxSize()
-                                .wrapContentHeight()
-                                .background(color = Color.White)) {
+                        if (calendarOpenState.value) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .wrapContentHeight()
+                                    .background(color = Color.White)
+                            ) {
                                 AndroidView(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -314,33 +360,40 @@ class HomeActivity : AbstractActivity() {
                                             )
                                         }
                                     },
-                                    update = {views->
+                                    update = { views ->
                                         val dob = dobString.value
                                         val parts = dob.split(dateDelimeter)
                                         val c = Calendar.getInstance()
                                         var y = c.get(Calendar.YEAR)
                                         var m = c.get(Calendar.MONTH)
                                         var d = c.get(Calendar.DATE)
-                                        if(parts.size==3){
+                                        if (parts.size == 3) {
                                             y = parts[0].toInt()
                                             m = parts[1].toInt() - 1
                                             d = parts[2].toInt()
                                         }
 
-                                        views.init(y,m,d,object: DatePicker.OnDateChangedListener{
-                                            override fun onDateChanged(
-                                                view: DatePicker?,
-                                                year: Int,
-                                                monthOfYear: Int,
-                                                dayOfMonth: Int
-                                            ) {
-                                                dobString.value = "$year$dateDelimeter${leftPad(monthOfYear+1)}$dateDelimeter${leftPad(dayOfMonth)}"
-                                                calendarOpenState.value = false
-                                                ageStringState.value = ""
-                                                validate()
-                                            }
+                                        views.init(
+                                            y,
+                                            m,
+                                            d,
+                                            object : DatePicker.OnDateChangedListener {
+                                                override fun onDateChanged(
+                                                    view: DatePicker?,
+                                                    year: Int,
+                                                    monthOfYear: Int,
+                                                    dayOfMonth: Int
+                                                ) {
+                                                    dobString.value =
+                                                        "$year$dateDelimeter${leftPad(monthOfYear + 1)}$dateDelimeter${
+                                                            leftPad(dayOfMonth)
+                                                        }"
+                                                    calendarOpenState.value = false
+                                                    ageStringState.value = ""
+                                                    validate()
+                                                }
 
-                                        })
+                                            })
                                     }
                                 )
                                 IconButton(
@@ -355,8 +408,7 @@ class HomeActivity : AbstractActivity() {
                                     )
                                 }
                             }
-                        }
-                        else{
+                        } else {
                             Card(
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -364,9 +416,11 @@ class HomeActivity : AbstractActivity() {
                                 backgroundColor = Color.White,
                                 shape = RoundedCornerShape(12.dp)
                             ) {
-                                Column(modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(12.dp)) {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(12.dp)
+                                ) {
                                     Text(
                                         "Age and Gender",
                                         style = TextStyle(
@@ -377,22 +431,24 @@ class HomeActivity : AbstractActivity() {
                                     Spacer(modifier = Modifier.height(12.dp))
                                     Divider()
                                     Spacer(modifier = Modifier.height(12.dp))
-                                    Row(modifier = Modifier
-                                        .fillMaxWidth()
-                                        .wrapContentHeight()) {
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .wrapContentHeight()
+                                    ) {
                                         TextField(
                                             placeholder = {
                                                 Text("Age")
                                             },
-                                            value =ageStringState.value,
-                                            onValueChange ={
-                                                if(it.length<4){
+                                            value = ageStringState.value,
+                                            onValueChange = {
+                                                if (it.length < 4) {
                                                     val value = try {
                                                         it.toInt()
                                                     } catch (e: Exception) {
                                                         0
                                                     }
-                                                    if(value<181){
+                                                    if (value < 181) {
                                                         ageStringState.value = it
                                                         dobString.value = ""
                                                         validate()
@@ -412,16 +468,19 @@ class HomeActivity : AbstractActivity() {
                                             )
                                         )
                                         Spacer(modifier = Modifier.size(12.dp))
-                                        Text("Or",
+                                        Text(
+                                            "Or",
                                             modifier = Modifier
                                                 .height(IntrinsicSize.Min)
-                                                .align(Alignment.CenterVertically))
+                                                .align(Alignment.CenterVertically)
+                                        )
                                         Spacer(modifier = Modifier.size(12.dp))
                                         Column(
                                             modifier = Modifier
                                                 .fillMaxWidth()
                                                 .weight(1f),
-                                            horizontalAlignment = Alignment.CenterHorizontally){
+                                            horizontalAlignment = Alignment.CenterHorizontally
+                                        ) {
                                             IconButton(onClick = {
                                                 calendarOpenState.value = true
                                             }) {
@@ -431,7 +490,8 @@ class HomeActivity : AbstractActivity() {
                                                     contentDescription = "DOB"
                                                 )
                                             }
-                                            Text("DOB\n"+dobString.value,
+                                            Text(
+                                                "DOB\n" + dobString.value,
                                                 textAlign = TextAlign.Center,
                                                 style = TextStyle(
                                                     color = colorResource(id = R.color.red),
@@ -446,23 +506,25 @@ class HomeActivity : AbstractActivity() {
                                             .fillMaxWidth()
                                             .align(Alignment.CenterHorizontally),
                                         horizontalArrangement = Arrangement.SpaceAround
-                                    ){
+                                    ) {
                                         IconButton(onClick = {
                                             genderState.value = 0
                                             validate()
                                         }) {
-                                            Column(horizontalAlignment = Alignment.CenterHorizontally){
+                                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                                 Icon(
                                                     modifier = Modifier.size(genderIconSize.dp),
                                                     imageVector = Icons.Filled.Male,
-                                                    tint = if(genderState.value==0) red else Color.Gray,
+                                                    tint = if (genderState.value == 0) red else Color.Gray,
                                                     contentDescription = "Male"
                                                 )
-                                                Text("Male",
+                                                Text(
+                                                    "Male",
                                                     style = TextStyle(
-                                                        fontWeight = if(genderState.value==0) FontWeight.Bold else FontWeight.Normal,
-                                                        color = if(genderState.value==0) red else Color.Gray
-                                                    ))
+                                                        fontWeight = if (genderState.value == 0) FontWeight.Bold else FontWeight.Normal,
+                                                        color = if (genderState.value == 0) red else Color.Gray
+                                                    )
+                                                )
                                             }
 
 
@@ -471,36 +533,38 @@ class HomeActivity : AbstractActivity() {
                                             genderState.value = 1
                                             validate()
                                         }) {
-                                            Column(horizontalAlignment = Alignment.CenterHorizontally){
+                                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                                 Icon(
                                                     modifier = Modifier.size(genderIconSize.dp),
                                                     imageVector = Icons.Filled.Female,
-                                                    tint = if(genderState.value==1) red else Color.Gray,
+                                                    tint = if (genderState.value == 1) red else Color.Gray,
                                                     contentDescription = "Female"
                                                 )
-                                                Text("Female",
+                                                Text(
+                                                    "Female",
                                                     style = TextStyle(
-                                                        fontWeight = if(genderState.value==1) FontWeight.Bold else FontWeight.Normal,
-                                                        color = if(genderState.value==1) red else Color.Gray
-                                                    ))
+                                                        fontWeight = if (genderState.value == 1) FontWeight.Bold else FontWeight.Normal,
+                                                        color = if (genderState.value == 1) red else Color.Gray
+                                                    )
+                                                )
                                             }
                                         }
                                         IconButton(onClick = {
                                             genderState.value = 2
                                             validate()
                                         }) {
-                                            Column(horizontalAlignment = Alignment.CenterHorizontally){
+                                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                                 Icon(
                                                     modifier = Modifier.size(genderIconSize.dp),
                                                     imageVector = Icons.Filled.Person,
-                                                    tint = if(genderState.value==2) red else Color.Gray,
+                                                    tint = if (genderState.value == 2) red else Color.Gray,
                                                     contentDescription = "Other"
                                                 )
                                                 Text(
                                                     "Other",
                                                     style = TextStyle(
-                                                        fontWeight = if(genderState.value==2) FontWeight.Bold else FontWeight.Normal,
-                                                        color = if(genderState.value==2) red else Color.Gray
+                                                        fontWeight = if (genderState.value == 2) FontWeight.Bold else FontWeight.Normal,
+                                                        color = if (genderState.value == 2) red else Color.Gray
                                                     )
                                                 )
                                             }
@@ -510,7 +574,11 @@ class HomeActivity : AbstractActivity() {
                                     Button(
                                         modifier = Modifier.fillMaxWidth(),
                                         onClick = {
-                                            updateAgeAndGender(ageStringState.value,dobString.value,genderState.value)
+                                            updateAgeAndGender(
+                                                ageStringState.value,
+                                                dobString.value,
+                                                genderState.value
+                                            )
                                             ageGenderDialog.value = false
                                         },
                                         enabled = canUpdate.value,
@@ -532,29 +600,28 @@ class HomeActivity : AbstractActivity() {
     }
 
     private fun updateAgeAndGender(age: String, dob: String, gender: Int) {
-        var g = when(gender){
-            0->"male"
-            1->"female"
-            else->"other"
+        var g = when (gender) {
+            0 -> "male"
+            1 -> "female"
+            else -> "other"
         }
         lifecycleScope.launch {
             wait = true
             processApi {
-                repository.updateAgeAndGender(age,dob,g).resp
+                repository.updateAgeAndGender(age, dob, g).resp
             }.apply {
-                when(status){
-                    ApiDispositionStatus.RESPONSE ->{
+                when (status) {
+                    ApiDispositionStatus.RESPONSE -> {
                         response?.apply {
-                            if(success){
+                            if (success) {
                                 R.string.age_and_gender_updated_successfully.string.toast(this@HomeActivity)
                                 repository.setAgeAndGenderOk(success)
-                            }
-                            else{
+                            } else {
                                 message.toast(this@HomeActivity)
                             }
                         }
                     }
-                    else->{
+                    else -> {
                         //R.string.something_went_wrong.string.toast(this@HomeActivity)
                     }
                 }
@@ -564,59 +631,90 @@ class HomeActivity : AbstractActivity() {
     }
 
     private fun leftPad(i: Int): String {
-        if(i<10){
+        if (i < 10) {
             return "0$i"
-        }
-        else{
+        } else {
             return "$i"
         }
     }
 
-    private fun replaceToHomeFragment(){
+    private fun replaceToHomeFragment() {
         val fm = supportFragmentManager
         fm.commit {
-            replace(R.id.fragmentContainerView,HomeFragment.newInstance(childCallback))
+            replace(R.id.fragmentContainerView, HomeFragment.newInstance(childCallback))
         }
     }
 
-    private fun replaceToConsultationsFragment(){
+    private fun replaceToConsultationsFragment(argument: Any? = null) {
         val fm = supportFragmentManager
         fm.commit {
-            replace(R.id.fragmentContainerView,ConsultationFragment.newInstance(childCallback))
+            replace(
+                R.id.fragmentContainerView,
+                ConsultationFragment.newInstance(childCallback).javaClass,
+                bundleOf(Constants.consultationFragArg to argument)
+            )
         }
     }
 
-    private fun replaceToMyBookingsFragment(){
+    private fun replaceToMyBookingsFragment() {
         val fm = supportFragmentManager
         fm.commit {
-            replace(R.id.fragmentContainerView,MyBookingsFragment.newInstance(childCallback))
+            replace(R.id.fragmentContainerView, MyBookingsFragment.newInstance(childCallback))
         }
     }
 
-    private fun replaceToProfileFragment(){
+    private fun replaceToProfileFragment() {
         val fm = supportFragmentManager
         fm.commit {
-            replace(R.id.fragmentContainerView,ProfileFragment.newInstance(childCallback))
+            replace(R.id.fragmentContainerView, ProfileFragment.newInstance(childCallback))
         }
     }
 
     var lastBackPressed = -1L
     override fun onBackPressed() {
         val now = System.currentTimeMillis()
-        if(lastBackPressed==-1L){
+        if (lastBackPressed == -1L) {
             lastBackPressed = now
             Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show()
-        }
-        else{
+        } else {
             val dif = now - lastBackPressed
             lastBackPressed = -1
-            if(dif<2000){
+            if (dif < 2000) {
                 super.onBackPressed()
-            }
-            else{
+            } else {
                 lastBackPressed = now
                 Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+
+    private fun userPushTokenUpdate() {
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener(OnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    println("Fetching FCM registration token failed")
+                    return@OnCompleteListener
+                }
+                val pushFireRequest: StringRequest = object :
+                    StringRequest(Method.POST, sendTokenURL,
+                        Response.Listener { response ->
+                            Log.i("PushSendResponse", "onResponse: $response")
+                        }, Response.ErrorListener { error -> Log.e("error", "error$error") }) {
+                    @Throws(AuthFailureError::class)
+                    override fun getParams(): Map<String, String> {
+                        val params: MutableMap<String, String> = HashMap()
+                        params["userId"] = repository.userUid
+                        params["fcmToken"] = task.result
+                        Log.i("PushSendRequest", "sendParams: $params")
+
+                        return params
+                    }
+                }
+                Volley.newRequestQueue(this@HomeActivity)
+                    .add(pushFireRequest)
+
+            })
+
     }
 }

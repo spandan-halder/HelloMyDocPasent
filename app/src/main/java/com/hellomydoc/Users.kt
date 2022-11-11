@@ -1,8 +1,10 @@
 package com.hellomydoc
 
 import android.content.Context
+/*
 import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+*/
 import com.google.gson.GsonBuilder
 import com.hellomydoc.data.*
 import com.hellomydoc.data.appointment_booking_doctor_response.DoctorsForAppointmentResponse
@@ -389,14 +391,14 @@ class ApiRepository {
 }
 private fun httpClient(): OkHttpClient {
     return OkHttpClient.Builder()
-        .addInterceptor(
+       /* .addInterceptor(
             ChuckerInterceptor.Builder(App.instance as Context)
                 .collector(ChuckerCollector(App.instance as Context))
                 .maxContentLength(Constants.MAX_CONTENT_LENGHT)
                 .redactHeaders(emptySet())
                 .alwaysReadResponseBody(false)
                 .build()
-        )
+        )*/
         .build()
 }
 

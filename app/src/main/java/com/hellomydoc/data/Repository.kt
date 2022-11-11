@@ -1,6 +1,7 @@
 package com.hellomydoc.data
 
 //import com.pixplicity.easyprefs.library.Prefs
+import android.util.Log
 import com.hellomydoc.*
 import com.hellomydoc.data.appointment_booking_doctor_response.Doctor
 import com.hellomydoc.data.appointment_booking_doctor_response.DoctorsForAppointmentResponse
@@ -180,6 +181,7 @@ class Repository {
         type: AppointmentTypeView.APPOINTMENT_TYPE,
         speciality: AppointmentDoctorSpeciality
     ): Response<SlotsResponse> {
+        Log.d("Texting111", ApiRepository().getSlots(repository.userUid,type,speciality.name).body().toString())
         return ApiRepository().getSlots(repository.userUid,type,speciality.name)
     }
 
@@ -278,7 +280,6 @@ class Repository {
         var type = Prefs.getString(Constants.APPOINTMENT_TYPE_KEY,"")
         return AppointmentTypeView.APPOINTMENT_TYPE.fromString(type?:"")
     }
-    //////
 
     fun setSelectedSlot(
         selectedSlotData: SelectedDateSlot,

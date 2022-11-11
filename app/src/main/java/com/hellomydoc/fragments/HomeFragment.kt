@@ -368,50 +368,53 @@ class HomeFragment : Fragment() {
 
         }
         var data = getDateSlotsSummary()
-
-        var nextAvailable = "WED, 24"
-
-        val d = data[0]
-        Log.d("slots_data",dateSlotsData.toString())
-        selectedSlotData.date = dateSlotsData.getOrNull(0)?.date?:""
-        svSlots?.setData(dateSlotsData[0].dayPartSlots)
-        tvDate?.text = d.date.dateFormat(R.string.mysql_date_format.string,R.string.eee_mmm_d.string,true)
-        tvSlots?.text = if(d.slots>0){R.string.no_slots.string}else{"${d.slots} ${R.string.slots.string} ${R.string.available.string}"}
-        tvNextAvailable?.text = "${R.string.next_availability_on.string} $nextAvailable"
-        alvDates?.onSelectedCallback = {
-            selectedSlotData.date = dateSlotsData[it].date
-            val dd = data[it]
-            tvDate?.text = dd.date.dateFormat(R.string.mysql_date_format.string,R.string.eee_mmm_d.string,true)
-            tvSlots?.text = if(dd.slots<=0){R.string.no_slots.string}else{"${dd.slots} ${R.string.slots.string} ${R.string.available.string}"}
-            if(dd.slots<=0){
-                tvSlots?.visibility = View.VISIBLE
-                tvNextAvailable?.visibility = View.VISIBLE
-                svSlots?.visibility = View.GONE
-            }
-            else{
-                tvSlots?.visibility = View.GONE
-                svSlots?.visibility = View.VISIBLE
-                tvNextAvailable?.visibility = View.GONE
-                svSlots?.setData(dateSlotsData[it].dayPartSlots)
-            }
-        }
-        svSlots?.onChangeCallback = {pos,slotPos->
-            Log.d("fkljfsdsdlfjlds","$pos.$slotPos")
-            val dateData = dateSlotsData.find {
-                it.date==selectedSlotData.date
-            }
-            dateData?.apply {
-                val dayPart = this.dayPartSlots.getOrNull(pos)
-                selectedSlotData.section = dayPart?.id?:""
-                dayPart?.apply {
-                    selectedSlotData.time = this.slots.getOrNull(slotPos)?.timestamp?:""
+        Log.d("slots_data",data.toString())
+        if (data.isEmpty()){
+            Toast.makeText(context, "No slot available right now", Toast.LENGTH_SHORT).show()
+        }else{
+            val d = data[0]
+            var nextAvailable = "WED, 24"
+            selectedSlotData.date = dateSlotsData.getOrNull(0)?.date?:""
+            svSlots?.setData(dateSlotsData[0].dayPartSlots)
+            tvDate?.text = d.date.dateFormat(R.string.mysql_date_format.string,R.string.eee_mmm_d.string,true)
+            tvSlots?.text = if(d.slots>0){R.string.no_slots.string}else{"${d.slots} ${R.string.slots.string} ${R.string.available.string}"}
+            tvNextAvailable?.text = "${R.string.next_availability_on.string} $nextAvailable"
+            alvDates?.onSelectedCallback = {
+                selectedSlotData.date = dateSlotsData[it].date
+                val dd = data[it]
+                tvDate?.text = dd.date.dateFormat(R.string.mysql_date_format.string,R.string.eee_mmm_d.string,true)
+                tvSlots?.text = if(dd.slots<=0){R.string.no_slots.string}else{"${dd.slots} ${R.string.slots.string} ${R.string.available.string}"}
+                if(dd.slots<=0){
+                    tvSlots?.visibility = View.VISIBLE
+                    tvNextAvailable?.visibility = View.VISIBLE
+                    svSlots?.visibility = View.GONE
+                }
+                else{
+                    tvSlots?.visibility = View.GONE
+                    svSlots?.visibility = View.VISIBLE
+                    tvNextAvailable?.visibility = View.GONE
+                    svSlots?.setData(dateSlotsData[it].dayPartSlots)
                 }
             }
-        }
-        alvDates?.setData(data)
+            svSlots?.onChangeCallback = {pos,slotPos->
+                Log.d("fkljfsdsdlfjlds","$pos.$slotPos")
+                val dateData = dateSlotsData.find {
+                    it.date==selectedSlotData.date
+                }
+                dateData?.apply {
+                    val dayPart = this.dayPartSlots.getOrNull(pos)
+                    selectedSlotData.section = dayPart?.id?:""
+                    dayPart?.apply {
+                        selectedSlotData.time = this.slots.getOrNull(slotPos)?.timestamp?:""
+                    }
+                }
+            }
+            alvDates?.setData(data)
 
-        bottomSheetDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-        bottomSheetDialog.show()
+            bottomSheetDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            bottomSheetDialog.show()
+        }
+
     }
 
     private fun showAvailableSlots(it: Int) {

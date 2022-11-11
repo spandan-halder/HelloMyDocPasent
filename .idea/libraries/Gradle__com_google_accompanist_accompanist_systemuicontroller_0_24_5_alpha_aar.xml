@@ -1,9 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.accompanist:accompanist-systemuicontroller:0.24.5-alpha@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f20e029a4fa4b70c878f27ecd248aa0d/transformed/jetified-accompanist-systemuicontroller-0.24.5-alpha/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f20e029a4fa4b70c878f27ecd248aa0d/transformed/jetified-accompanist-systemuicontroller-0.24.5-alpha/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f20e029a4fa4b70c878f27ecd248aa0d/transformed/jetified-accompanist-systemuicontroller-0.24.5-alpha/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2f9cc720f6bb663bb388e122f387a93a/transformed/jetified-accompanist-systemuicontroller-0.24.5-alpha/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2f9cc720f6bb663bb388e122f387a93a/transformed/jetified-accompanist-systemuicontroller-0.24.5-alpha/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.accompanist/accompanist-systemuicontroller/0.24.5-alpha/4daed3bedb0f4584bdfd3376babc47e94660d00d/accompanist-systemuicontroller-0.24.5-alpha-javadoc.jar!/" />

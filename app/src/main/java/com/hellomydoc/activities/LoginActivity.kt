@@ -1,6 +1,7 @@
 package com.hellomydoc.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -301,6 +302,8 @@ class LoginActivity : AbstractActivity() {
                             R.string.something_went_wrong.string.toast(this@LoginActivity)
                         }
                         ApiDispositionStatus.RESPONSE ->{
+
+                            Log.d("LoginRes", response.toString())
                             response?.apply {
                                 if(success){
                                     message.toast(this@LoginActivity)

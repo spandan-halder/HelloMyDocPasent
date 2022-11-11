@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -105,6 +106,7 @@ class AppointmentTypeView : ConstraintLayout {
             APPOINTMENT_TYPE.VIDEO -> {
                 tvTitle?.text =  R.string.video_consultation.string
                 ivIcon?.setImageResource(R.drawable.ic_videocam_black_24dp)
+                Log.d("Testing1", "ButtonClick")
             }
             APPOINTMENT_TYPE.CHAT -> {
                 tvTitle?.text = R.string.chat_consultation.string

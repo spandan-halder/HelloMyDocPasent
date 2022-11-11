@@ -1,6 +1,8 @@
 package com.hellomydoc.fragments
 
 import android.app.Application
+import android.content.Intent
+import android.content.Intent.getIntentOld
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -17,7 +18,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -42,13 +42,22 @@ import com.vxplore.audiovideocall.videocall.models.AllowedResponse
 import com.vxplore.audiovideocall.videocall.models.Ids
 import kotlinx.coroutines.launch
 
+
 class ConsultationFragment : Fragment() {
     private var appointments: List<AppointmentData> = listOf()
     private var callback: HomeActivity.ChildCallback? = null
     private lateinit var binding: FragmentConsultationBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("timestamp_new",System.currentTimeMillis().toString())
+        Log.d("timestamp_new", System.currentTimeMillis().toString())
+
+        Log.d("MyTag", "testing")
+        if (arguments?.get(Constants.consultationFragArg)!=null){
+            Log.d("ConsultationArg123", "${arguments?.get(Constants.consultationFragArg)}")
+            openVideo(arguments?.get(Constants.consultationFragArg) as AppointmentData)
+        }
+
     }
 
     override fun onCreateView(
@@ -56,6 +65,7 @@ class ConsultationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentConsultationBinding.inflate(layoutInflater)
+
         return binding.root
     }
 
@@ -63,6 +73,7 @@ class ConsultationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.fabAdd.setOnClickListener {
             addAppointment()
+
         }
     }
 
@@ -73,16 +84,16 @@ class ConsultationFragment : Fragment() {
                 repository.appointments().resp
             }
                 .apply {
-                    when(status){
-                        ApiDispositionStatus.RESPONSE ->{
+                    when (status) {
+                        ApiDispositionStatus.RESPONSE -> {
                             response?.apply {
-                                if(success){
+                                if (success) {
                                     this@ConsultationFragment.appointments = appointments
                                     showAppointments()
                                 }
                             }
                         }
-                        else->{
+                        else -> {
                             this@ConsultationFragment.appointments
                             showAppointments()
                             //R.string.something_went_wrong.string.toast(requireContext())
@@ -94,19 +105,19 @@ class ConsultationFragment : Fragment() {
 
     private fun showAppointments() {
         binding.alvConsultations.clear()
-        if(appointments.size<1){
+        if (appointments.size < 1) {
             binding.cvNoAppointment.setContent {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         val image: Painter = painterResource(id = R.drawable.ic_history)
-                        Image(
+                        /*Image(
                             painter = image,
                             contentDescription = "",
                             contentScale = ContentScale.Inside,
                             modifier = Modifier.padding(12.dp)
-                        )
+                        )*/
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
                             R.string.no_bookings_yet.string,
@@ -123,7 +134,8 @@ class ConsultationFragment : Fragment() {
                             },
                             colors = ButtonDefaults.buttonColors(
                                 backgroundColor = Color.White,
-                                contentColor = Color.Black)
+                                contentColor = Color.Black
+                            )
                         ) {
                             Text(
                                 R.string.book_appointment.string.uppercase(),
@@ -133,41 +145,41 @@ class ConsultationFragment : Fragment() {
                     }
                 }
             }
-        }
-        else{
+        } else {
             binding.cvNoAppointment.setContent {
 
             }
             binding.alvConsultations.configure(
                 AnyListView.Configurator(
                     animationDuration = 100,
-                    animation = {position->
+                    animation = { position ->
                         R.anim.fall_down_animation
                     },
                     overScroll = false,
                     state = AnyListView.STATE.DATA,
-                    itemType = {position->position},
+                    itemType = { position -> position },
                     itemCount = { appointments.size },
                     itemView = {
                         AppointmentView(requireContext()).apply {
                             layoutParams = RecyclerView.LayoutParams(
                                 RecyclerView.LayoutParams.MATCH_PARENT,
-                                RecyclerView.LayoutParams.WRAP_CONTENT)
+                                RecyclerView.LayoutParams.WRAP_CONTENT
+                            )
                             //data = getAppointmentItem(it)
                         }
                     },
-                    onView = {pos,view->
+                    onView = { pos, view ->
                         val d = appointments.getOrNull(pos)
                         (view as? AppointmentView)?.data = d
                         (view as? AppointmentView)?.setCallback(
                             wholeViewClickListener = {
-                                onAppointmentClicked(d?:return@setCallback)
+                                onAppointmentClicked(d ?: return@setCallback)
                             },
                             typeViewClickListener = {
-                                when(d?.type?.uppercase()){
-                                    AppointmentTypeView.APPOINTMENT_TYPE.CHAT.name->openChat(d)
-                                    AppointmentTypeView.APPOINTMENT_TYPE.VIDEO.name->openVideo(d)
-                                    AppointmentTypeView.APPOINTMENT_TYPE.VOICE.name->goToVoiceCall(d)
+                                when (d?.type?.uppercase()) {
+                                    AppointmentTypeView.APPOINTMENT_TYPE.CHAT.name -> openChat(d)
+                                    AppointmentTypeView.APPOINTMENT_TYPE.VIDEO.name -> openVideo(d)
+                                    AppointmentTypeView.APPOINTMENT_TYPE.VOICE.name -> goToVoiceCall(d)
                                 }
                             }
                         )
@@ -178,23 +190,37 @@ class ConsultationFragment : Fragment() {
     }
 
     private fun onAppointmentClicked(appointmentData: AppointmentData) {
-        callback?.goToPage?.invoke(HomeActivity.PAGE.PRESCRIPTION,Bundle().apply {
-            putSerializable(Constants.APPOINTMENT,appointmentData)
+        callback?.goToPage?.invoke(HomeActivity.PAGE.PRESCRIPTION, Bundle().apply {
+            putSerializable(Constants.APPOINTMENT, appointmentData)
         })
     }
 
     private fun goToVoiceCall(it: AppointmentData) {
         CallBox.start(
-            it.patientId?:return,
-            it.doctorId?:return,
-            it.id?:return,
+            it.patientId ?: return,
+            it.doctorId ?: return,
+            it.id ?: return,
             requireActivity(),
             System.currentTimeMillis(),
-            15*60*1000
+            15 * 60 * 1000
         )
     }
+
     private fun openVideo(d: AppointmentData) {
-        VideoBox.callback = object: VideoBox.Callback{
+
+        /* Log.d("Testing2category",  d.category!!)
+         Log.d("Testing2doctorName",  d.doctorName!!)
+         Log.d("Testing2doctorId",  d.doctorId!!)
+         Log.d("Testing2image",  d.image!!)
+         Log.d("Testing2id",  d.id!!)
+         Log.d("Testing2patientName",  d.patientName!!)
+         Log.d("Testing2patientId",  d.patientId!!)
+         Log.d("Testing2timestamp",  d.timestamp!!)
+         Log.d("Testing2type",  d.type!!)*/
+//        Log.d("Testing2prescriptionId",  d.prescriptionId!!)
+
+
+        VideoBox.callback = object : VideoBox.Callback {
             override val ids: Ids?
                 get() = Ids(
                     d.patientId!!,
@@ -245,10 +271,10 @@ class ConsultationFragment : Fragment() {
                     return null
                 }*/
                 val startTime = System.currentTimeMillis()
-                return AllowedResponse(true,"allowed",startTime,15*60*1000)
+                return AllowedResponse(true, "allowed", startTime, 15 * 60 * 1000)
             }
         }
-        VideoBox.start(requireActivity(),d.id?:return,d.patientId?:return)
+        VideoBox.start(requireActivity(), d.id ?: return, d.patientId ?: return)
         /*callback?.goToPage?.invoke(HomeActivity.PAGE.VIDEO,Bundle().apply {
             val doctorId = d.doctorId?:""
             val patientId = d.patientId?:""
@@ -262,10 +288,10 @@ class ConsultationFragment : Fragment() {
     }
 
     private fun openChat(d: AppointmentData) {
-        callback?.goToPage?.invoke(HomeActivity.PAGE.CHAT,Bundle().apply {
-            val doctorId = d.doctorId?:""
-            val myId = d.patientId?:""
-            if(doctorId.isEmpty){
+        callback?.goToPage?.invoke(HomeActivity.PAGE.CHAT, Bundle().apply {
+            val doctorId = d.doctorId ?: ""
+            val myId = d.patientId ?: ""
+            if (doctorId.isEmpty) {
                 try {
                     Toast.makeText(
                         requireContext(),
@@ -274,24 +300,25 @@ class ConsultationFragment : Fragment() {
                     ).show()
                 } catch (e: Exception) {
                 }
-            }
-            else{
-                putString(Constants.PEER_ID_KEY,"doctor_$doctorId")
-                putString(Constants.MY_ID,"client_$myId")
+            } else {
+                putString(Constants.PEER_ID_KEY, "doctor_$doctorId")
+                putString(Constants.MY_ID, "client_$myId")
             }
         })
     }
 
     private fun addAppointment() {
-        val bottomSheetDialog = RoundBottomSheet(requireContext()){
+        val bottomSheetDialog = RoundBottomSheet(requireContext()) {
 
         }
         bottomSheetDialog.setContentView(R.layout.choose_speciality_dialog_layout)
 
-        val llv_general_practitioner = bottomSheetDialog.findViewById<View>(R.id.llv_general_practitioner)
+        val llv_general_practitioner =
+            bottomSheetDialog.findViewById<View>(R.id.llv_general_practitioner)
         val llv_pediatrics = bottomSheetDialog.findViewById<View>(R.id.llv_pediatrics)
 
-        val iv_general_practitioner = bottomSheetDialog.findViewById<View>(R.id.iv_general_practitioner)
+        val iv_general_practitioner =
+            bottomSheetDialog.findViewById<View>(R.id.iv_general_practitioner)
         val iv_Pediatrics = bottomSheetDialog.findViewById<View>(R.id.iv_Pediatrics)
 
         llv_general_practitioner?.setOnClickListener {
@@ -316,11 +343,12 @@ class ConsultationFragment : Fragment() {
         bottomSheetDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         bottomSheetDialog.show()
     }
+
     var prices: AppointmentPrices? = null
     private fun onSpecialitySelected(speciality: AppointmentDoctorSpeciality) {
         repository.clearAppointmentData()
         repository.setAppointmentSpeciality(speciality.name)
-        val bottomSheetDialog = RoundBottomSheet(requireContext()){
+        val bottomSheetDialog = RoundBottomSheet(requireContext()) {
 
         }
 
@@ -333,10 +361,10 @@ class ConsultationFragment : Fragment() {
                 repository.appointmentPrices().resp
             }
                 .apply {
-                    when(status){
-                        ApiDispositionStatus.RESPONSE ->{
+                    when (status) {
+                        ApiDispositionStatus.RESPONSE -> {
                             response?.apply {
-                                if(success){
+                                if (success) {
                                     prices = appointmentPrices
                                     prices?.let {
                                         binding.atvAppointmentTypes.setPrices(it)
@@ -347,7 +375,7 @@ class ConsultationFragment : Fragment() {
                                 }
                             }
                         }
-                        else->{
+                        else -> {
                             prices = null
                             R.string.something_went_wrong.string.toast(requireContext())
                         }
@@ -358,12 +386,12 @@ class ConsultationFragment : Fragment() {
 
 
         binding.btContinue.setOnClickListener {
+            Log.d("Test", "hello click")
             val type = binding.atvAppointmentTypes.type
-            if(type!= AppointmentTypeView.APPOINTMENT_TYPE.NONE){
+            if (type != AppointmentTypeView.APPOINTMENT_TYPE.NONE) {
                 bottomSheetDialog.dismiss()
-                onContinueAppointType(type,speciality)
-            }
-            else{
+                onContinueAppointType(type, speciality)
+            } else {
                 R.string.please_choose_appoint_type.string.toast(requireContext())
             }
         }
@@ -378,31 +406,30 @@ class ConsultationFragment : Fragment() {
         speciality: AppointmentDoctorSpeciality
     ) {
         repository.setAppointmentType(type)
-        var price = when(type){
-            AppointmentTypeView.APPOINTMENT_TYPE.VIDEO -> prices?.videoAppointmentPrice?:0f
-            AppointmentTypeView.APPOINTMENT_TYPE.CHAT -> prices?.chatAppointmentPrice?:0f
-            AppointmentTypeView.APPOINTMENT_TYPE.VOICE -> prices?.callAppointmentPrice?:0f
+        var price = when (type) {
+            AppointmentTypeView.APPOINTMENT_TYPE.VIDEO -> prices?.videoAppointmentPrice ?: 0f
+            AppointmentTypeView.APPOINTMENT_TYPE.CHAT -> prices?.chatAppointmentPrice ?: 0f
+            AppointmentTypeView.APPOINTMENT_TYPE.VOICE -> prices?.callAppointmentPrice ?: 0f
             AppointmentTypeView.APPOINTMENT_TYPE.NONE -> 0f
         }
         repository.setAppointmentPrice(price)
         lifecycleScope.launch {
             (requireActivity() as? HomeActivity)?.wait = true
             processApi {
-                repository.getSlots(type,speciality).resp
+                repository.getSlots(type, speciality).resp
             }.apply {
-                when(status){
-                    ApiDispositionStatus.RESPONSE ->{
+                when (status) {
+                    ApiDispositionStatus.RESPONSE -> {
                         response?.apply {
-                            if(success){
+                            if (success) {
                                 dateSlotsData = this.dateSlots
-                                openDateTime(type,speciality)
-                            }
-                            else{
+                                openDateTime(type, speciality)
+                            } else {
                                 message.toast(requireContext())
                             }
                         }
                     }
-                    else->{
+                    else -> {
                         R.string.something_went_wrong.string.toast(requireContext())
                     }
                 }
@@ -413,7 +440,7 @@ class ConsultationFragment : Fragment() {
     }
 
     private fun getDateSlotsSummary(): List<DateSlotsSummary> {
-        return dateSlotsData.mapIndexed() { index, it->
+        return dateSlotsData.mapIndexed() { index, it ->
             DateSlotsSummary(
                 id = index,
                 slots = it.dayPartSlots.sumOf {
@@ -429,7 +456,7 @@ class ConsultationFragment : Fragment() {
         type: AppointmentTypeView.APPOINTMENT_TYPE,
         speciality: AppointmentDoctorSpeciality
     ) {
-        val bottomSheetDialog = RoundBottomSheet(requireContext()){
+        val bottomSheetDialog = RoundBottomSheet(requireContext()) {
 
         }
         bottomSheetDialog.setContentView(R.layout.choose_date_time_dialog)
@@ -442,16 +469,15 @@ class ConsultationFragment : Fragment() {
         val btContinue = bottomSheetDialog.findViewById<TextView>(R.id.bt_continue)
 
         btContinue?.setOnClickListener {
-            if(
+            if (
                 selectedSlotData.date.isNotEmpty
-                &&selectedSlotData.section.isNotEmpty
-                &&selectedSlotData.time.isNotEmpty
-            ){
+                && selectedSlotData.section.isNotEmpty
+                && selectedSlotData.time.isNotEmpty
+            ) {
                 repository.setSelectedSlot(selectedSlotData, SelectedDateSlot::class.java)
                 bottomSheetDialog.dismiss()
-                callback?.goToPage?.invoke(HomeActivity.PAGE.ADD_PATIENT_DETAILS,null)
-            }
-            else{
+                callback?.goToPage?.invoke(HomeActivity.PAGE.ADD_PATIENT_DETAILS, null)
+            } else {
                 R.string.slot_not_selected.string.toast(requireContext())
             }
         }
@@ -460,38 +486,50 @@ class ConsultationFragment : Fragment() {
         var nextAvailable = "WED, 24"
 
         val d = data[0]
-        Log.d("slots_data",dateSlotsData.toString())
-        selectedSlotData.date = dateSlotsData.getOrNull(0)?.date?:""
+        Log.d("slots_data", dateSlotsData.toString())
+        selectedSlotData.date = dateSlotsData.getOrNull(0)?.date ?: ""
         svSlots?.setData(dateSlotsData[0].dayPartSlots)
-        tvDate?.text = d.date.dateFormat(R.string.mysql_date_format.string,R.string.eee_mmm_d.string,true)
-        tvSlots?.text = if(d.slots>0){R.string.no_slots.string}else{"${d.slots} ${R.string.slots.string} ${R.string.available.string}"}
+        tvDate?.text =
+            d.date.dateFormat(R.string.mysql_date_format.string, R.string.eee_mmm_d.string, true)
+        tvSlots?.text = if (d.slots > 0) {
+            R.string.no_slots.string
+        } else {
+            "${d.slots} ${R.string.slots.string} ${R.string.available.string}"
+        }
         tvNextAvailable?.text = "${R.string.next_availability_on.string} $nextAvailable"
         alvDates?.onSelectedCallback = {
             selectedSlotData.date = dateSlotsData[it].date
             val dd = data[it]
-            tvDate?.text = dd.date.dateFormat(R.string.mysql_date_format.string,R.string.eee_mmm_d.string,true)
-            tvSlots?.text = if(dd.slots<=0){R.string.no_slots.string}else{"${dd.slots} ${R.string.slots.string} ${R.string.available.string}"}
-            if(dd.slots<=0){
+            tvDate?.text = dd.date.dateFormat(
+                R.string.mysql_date_format.string,
+                R.string.eee_mmm_d.string,
+                true
+            )
+            tvSlots?.text = if (dd.slots <= 0) {
+                R.string.no_slots.string
+            } else {
+                "${dd.slots} ${R.string.slots.string} ${R.string.available.string}"
+            }
+            if (dd.slots <= 0) {
                 tvSlots?.visibility = View.VISIBLE
                 tvNextAvailable?.visibility = View.VISIBLE
                 svSlots?.visibility = View.GONE
-            }
-            else{
+            } else {
                 tvSlots?.visibility = View.GONE
                 svSlots?.visibility = View.VISIBLE
                 tvNextAvailable?.visibility = View.GONE
                 svSlots?.setData(dateSlotsData[it].dayPartSlots)
             }
         }
-        svSlots?.onChangeCallback = {pos,slotPos->
+        svSlots?.onChangeCallback = { pos, slotPos ->
             val dateData = dateSlotsData.find {
-                it.date==selectedSlotData.date
+                it.date == selectedSlotData.date
             }
             dateData?.apply {
                 val dayPart = this.dayPartSlots.getOrNull(pos)
-                selectedSlotData.section = dayPart?.id?:""
+                selectedSlotData.section = dayPart?.id ?: ""
                 dayPart?.apply {
-                    selectedSlotData.time = this.slots.getOrNull(slotPos)?.timestamp?:""
+                    selectedSlotData.time = this.slots.getOrNull(slotPos)?.timestamp ?: ""
                 }
             }
         }

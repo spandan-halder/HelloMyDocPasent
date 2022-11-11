@@ -1,6 +1,7 @@
 package com.hellomydoc.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -12,6 +13,7 @@ class VideoCallingActivity : AppCompatActivity() {
     private var fab_end: ExtendedFloatingActionButton? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("Testing1","VideocallActivity")
         setContentView(R.layout.activity_video_calling)
         iv_back = findViewById(R.id.iv_back)
         fab_mute = findViewById(R.id.fab_mute)

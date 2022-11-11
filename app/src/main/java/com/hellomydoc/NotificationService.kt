@@ -9,10 +9,12 @@ class NotificationService : FirebaseMessagingService() {
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
         ChatBox.onNewToken(this.application as App,p0)
+        Log.d("MyToken", ""+p0)
     }
 
 
     override fun onMessageReceived(p0: RemoteMessage) {
-        Log.d("new_message",p0.toString())
+
+        Log.d("new_message_palash",p0.toString())
     }
 }

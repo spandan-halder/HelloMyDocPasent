@@ -1,6 +1,8 @@
 package com.hellomydoc
 
 object Constants {
+    const val DataPayload = "DATA_PAYLOAD"
+    const val consultationFragArg = "ARGUMENT"
     const val MEDICAL_RECORD = "MEDICAL_RECORD"
     const val APPOINTMENT = "APPOINTMENT"
     const val APPOINTMENT_ID = "APPOINTMENT_ID"
